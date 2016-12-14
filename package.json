@@ -5,13 +5,15 @@
   "keywords": [],
   "author": "Sigmund Burgos <sigmund.burgos@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "tsc && concurrently \"tsc -w\" \"lite-server\""
+  },
   "dependencies": {
     "@angular/common": "~2.3.0",
     "@angular/compiler": "~2.3.0",
     "@angular/core": "~2.3.0",
     "@angular/platform-browser": "~2.3.0",
     "@angular/platform-browser-dynamic": "~2.3.0",
-
     "systemjs": "0.19.40",
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.8",
@@ -19,6 +21,8 @@
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
+    "concurrently": "^3.1.0",
+    "fs-extra": "^1.0.0"
   },
   "repository": {}
 }
