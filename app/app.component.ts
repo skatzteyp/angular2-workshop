@@ -11,11 +11,11 @@ import { Component } from '@angular/core';
         <th>Delivered</th>
         <th></th>
       </tr>
-      <tr *ngFor="let gift of gifts">
-        <td>{{gift.name}}</td>
-        <td>{{gift.receiver}}</td>
-        <td><input type="checkbox" checked="{{gift.delivered}}" /></td>
-        <td><button>Naughty?</button></td>
+      <tr *ngFor="let gift of gifts; let i = index;">
+        <td [style.text-decoration]="gift.delivered ? 'line-through' : ''" >{{gift.name}}</td>
+        <td [style.text-decoration]="gift.delivered ? 'line-through' : ''" >{{gift.receiver}}</td>
+        <td><input type="checkbox" [(ngModel)]="gift.delivered" /></td>
+        <td><button (click)="deleteGift(i)">Naughty?</button></td>
         <td><button (click)="editGift(gift)">Edit</button></td>
       </tr>
     </table>
@@ -28,9 +28,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Santa\'s List';
-  currentGift: Gift = { };
+  currentGift: Gift = new Gift(0, '', '');
 
-  gifts: Gifts[] = [
+  gifts: Gift[] = [
     new Gift(1, 'Wallet', 'Father'),
     new Gift(2, 'Apron', 'Mother'),
     new Gift(3, 'Ball', 'Brother'),
@@ -40,6 +40,10 @@ export class AppComponent {
 
   editGift(gift: Gift) {
     this.currentGift = gift;
+  }
+
+  deleteGift(index) {
+    this.gifts.splice(index, 1);
   }
 }
 
