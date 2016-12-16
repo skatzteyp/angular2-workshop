@@ -4,11 +4,21 @@ import { Component } from '@angular/core';
   selector: 'gift-list',
   template: `
     <h1>{{title}}</h1>
-    <ul>
-      <li *ngFor="let gift of gifts">
-        {{gift.name}}
-      </li>
-    </ul>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Receiver</th>
+        <th>Delivered</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let gift of gifts">
+        <td>{{gift.name}}</td>
+        <td>{{gift.receiver}}</td>
+        <td><input type="checkbox" checked="{{gift.delivered}}" /></td>
+        <td><button>Naughty?</button></td>
+        <td><button>Edit</button></td>
+      </tr>
+    </table>
   `,
 })
 export class AppComponent {
