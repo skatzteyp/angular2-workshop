@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { Gift } from './gift';
+
 @Component({
   selector: 'gift-list',
   template: `
@@ -42,12 +44,8 @@ export class AppComponent {
     this.currentGift = gift;
   }
 
-  deleteGift(index) {
+  deleteGift(index: number) {
     this.gifts.splice(index, 1);
   }
 }
 
-export class Gift {
-  constructor( public id: number, public name: string, public receiver: string) {
-    }
-}
