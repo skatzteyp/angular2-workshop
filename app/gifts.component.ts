@@ -1,22 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Gift } from './gift';
+import { GiftService } from './gift.service';
 
 @Component({
   selector: 'gifts',
-  templateUrl: './gifts.component.html'
+  templateUrl: './gifts.component.html',
+  providers: [
+    GiftService
+  ]
 })
-export class GiftsComponent {
+export class GiftsComponent implements OnInit {
   title = 'Santa\'s List';
   currentGift: Gift;
+  gifts: Gift[];
 
-  gifts: Gift[] = [
-    new Gift(1, 'Wallet', 'Father'),
-    new Gift(2, 'Apron', 'Mother'),
-    new Gift(3, 'Ball', 'Brother'),
-    new Gift(4, 'Bag', 'Sister'),
-    new Gift(5, 'Eyeglass', 'Grandpa'),
-  ];
+  constructor(private giftService: GiftService) {
+  }
+
+  getGifts(): Promise<Gift[]> {
+    return this.giftService.getGifts();
+  }
+
+  ngOnInit(): void {
+    this.getGifts().then((gifts) => {
+      this.gifts = gifts;
+    });
+  }
 
   editGift(gift: Gift) {
     this.currentGift = gift;
