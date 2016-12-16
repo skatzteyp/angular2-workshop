@@ -8,12 +8,15 @@ import { Component } from '@angular/core';
       <tr>
         <th>Name</th>
         <th>Receiver</th>
+        <th>Delivered</th>
         <th></th>
       </tr>
       <tr *ngFor="let gift of gifts">
         <td>{{gift.name}}</td>
         <td>{{gift.receiver}}</td>
-        <td><button (click)="onSelect(gift)">Edit</button></td>
+        <td><input type="checkbox" checked="{{gift.delivered}}" /></td>
+        <td><button>Naughty?</button></td>
+        <td><button (click)="editGift(gift)">Edit</button></td>
       </tr>
     </table>
     <div>
@@ -35,7 +38,7 @@ export class AppComponent {
     new Gift(5, 'Eyeglass', 'Grandpa'),
   ];
 
-  onSelect(gift: Gift) {
+  editGift(gift: Gift) {
     this.currentGift = gift;
   }
 }
