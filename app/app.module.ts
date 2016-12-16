@@ -2,7 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 
-import { GiftListComponent }  from './gift-list.component';
+import { GiftsComponent }  from './gifts.component';
 import { GiftDetailComponent }  from './gift-detail.component';
 
 @NgModule({
@@ -12,8 +12,8 @@ import { GiftDetailComponent }  from './gift-detail.component';
   ],
   declarations: [
     GiftDetailComponent,
-    GiftListComponent
+    GiftsComponent
   ],
-  bootstrap:    [ GiftListComponent ]
+  bootstrap:    [ GiftsComponent ]
 })
 export class AppModule { }

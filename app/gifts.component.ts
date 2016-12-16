@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 import { Gift } from './gift';
 
 @Component({
-  selector: 'gift-list',
-  templateUrl: './gift-list.component.html'
+  selector: 'gifts',
+  templateUrl: './gifts.component.html'
 })
-export class GiftListComponent {
+export class GiftsComponent {
   title = 'Santa\'s List';
   currentGift: Gift;
 
