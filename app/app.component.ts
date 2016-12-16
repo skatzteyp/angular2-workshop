@@ -1,22 +1,46 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'my-app',
+  selector: 'gift-list',
   template: `
     <h1>{{title}}</h1>
-    <h2>{{gift.name}} Details</h2>
-    <div>ID: {{gift.id}}</div>
-    <div>Name: {{gift.name}} <input [(ngModel)]="gift.name" placeholder="Name" /></div>
-    <div>Receiver: {{gift.receiver}} <input [(ngModel)]="gift.receiver" placeholder="Receiver" /></div>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Receiver</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let gift of gifts">
+        <td>{{gift.name}}</td>
+        <td>{{gift.receiver}}</td>
+        <td><button (click)="onSelect(gift)">Edit</button></td>
+      </tr>
+    </table>
+    <div>
+      <h2>Gift Details:</h2>
+      <div>Name: <input [(ngModel)]="currentGift.name" /></div>
+      <div>Receiver: <input [(ngModel)]="currentGift.receiver" /></div>
+    </div>
   `,
 })
-export class AppComponent  {
+export class AppComponent {
   title = 'Santa\'s List';
+  currentGift: Gift = { };
 
-  gift = { id: 1, name: 'Wallet', receiver: 'Father' };
+  gifts: Gifts[] = [
+    new Gift(1, 'Wallet', 'Father'),
+    new Gift(2, 'Apron', 'Mother'),
+    new Gift(3, 'Ball', 'Brother'),
+    new Gift(4, 'Bag', 'Sister'),
+    new Gift(5, 'Eyeglass', 'Grandpa'),
+  ];
+
+  onSelect(gift: Gift) {
+    this.currentGift = gift;
+  }
 }
 
 export class Gift {
-  name: string;
-  receiver: string;
+  constructor( public id: number, public name: string, public receiver: string) {
+    }
 }
