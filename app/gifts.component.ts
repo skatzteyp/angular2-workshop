@@ -6,9 +6,6 @@ import { GiftService } from './gift.service';
 @Component({
   selector: 'gifts',
   templateUrl: './gifts.component.html',
-  providers: [
-    GiftService
-  ]
 })
 export class GiftsComponent implements OnInit {
   title = 'Santa\'s List';
@@ -32,7 +29,7 @@ export class GiftsComponent implements OnInit {
     this.currentGift = gift;
   }
 
-  deleteGift(index: number) {
-    this.gifts.splice(index, 1);
+  deleteGift(id: number) {
+    this.giftService.deleteGift(id);
   }
 }
